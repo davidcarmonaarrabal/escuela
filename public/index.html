@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            background-color: gray;
+        }
+
+        .container {
+            background-color: aqua;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: repeat(3, 200px);
+            grid-template-rows: 50px 100px;
+            justify-items: stretch;
+            align-items: stretch;
+
+            justify-content: center;
+            align-content: center;
+        }
+
+        .item {
+            background-color: bisque;
+            border: solid 2px blue;
+        }
+
+        .item:nth-child(1) {
+            font-size: 40px;
+            text-align: center;
+            order: -1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="item"> 1 </div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+
+</body>
+
+</html>
