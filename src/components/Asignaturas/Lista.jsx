@@ -1,6 +1,9 @@
 import Modal from "@/components/Modal";
 import { eliminarAsignatura, insertarAsignatura, modificarAsignatura } from "@/lib/actions";
 import { obtenerAsignaturas } from "@/lib/data";
+import AsignaturasInsertar from "./Insertar";
+import AsignaturasModificar from "./Modificar";
+import AsignaturasEliminar from "./Eliminar";
 
 export default async function Asignaturas() {
     const asignaturas = await obtenerAsignaturas();
@@ -8,14 +11,7 @@ export default async function Asignaturas() {
     return (
         <div>
 
-            <Modal openElement={<p className="inline border-2 border-black">Insertar asignatura</p>}>
-                <form action={insertarAsignatura}>
-                    <input name="nombre" placeholder="Nombre" />
-                    <input name="profesor" placeholder="Profesor/a" />
-                    <input name="num_horas" placeholder="Num_horas" />
-                    <button className="border-2 border-black">Insertar asignatura</button>
-                </form>
-            </Modal>
+            <AsignaturasInsertar/>
 
 
             {
@@ -27,27 +23,9 @@ export default async function Asignaturas() {
                             <p>{asignatura.num_horas}</p>
                         </div>
 
-                        <Modal openElement={<p className="inline border-2 border-black">Modificar</p>}>
-                            <form action={modificarAsignatura}>
-                                <input type="hidden" name="id" defaultValue={asignatura.id} />
-                                <input name='nombre' defaultValue={asignatura.nombre} />
-                                <input name='profesor' defaultValue={asignatura.profesor} />
-                                <input name='num_horas' defaultValue={asignatura.num_horas} />
+                        <AsignaturasModificar asignatura={asignatura}/>
 
-                                <button className="border-2 border-black">Modificar</button>
-                            </form>
-                        </Modal>
-
-                        <Modal openElement={<p className="inline border-2 border-black">Eliminar</p>}>
-                            <h1 className="text-2xl text-red-600">¿Desea eliminar los siguentes datos</h1>
-                            <p>ASIGNATURA: {asignatura.nombre}</p>
-                            <p>PROFESOR/A: {asignatura.profesor}</p>
-                            <p>NUM_HORAS: {asignatura.num_horas}</p>
-                            <form action={eliminarAsignatura}>
-                                <input type="hidden" name="id" defaultValue={asignatura.id} />
-                                <button className="border-2 border-black">Eliminar</button>
-                            </form>
-                        </Modal>
+                        <AsignaturasEliminar asignatura={asignatura}/>
 
                         <hr />
                     </div>

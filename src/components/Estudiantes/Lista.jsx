@@ -3,13 +3,14 @@ import { eliminarEstudiante, insertarEstudiante, modificarEstudiante } from "@/l
 import { obtenerEstudiantes } from "@/lib/data";
 import GrupoInsertar from "./Insertar";
 import GrupoModificar from "./Modificar";
+import EstudianteEliminar from "./Eliminar";
 
 export default async function Estudiantes() {
     const estudiantes = await obtenerEstudiantes();
     console.log(estudiantes);
     return (
         <div>
-            <GrupoInsertar></GrupoInsertar>
+            <EstudianteInsertar></EstudianteInsertar>
 
             {
                 estudiantes.map(estudiante =>
@@ -21,19 +22,9 @@ export default async function Estudiantes() {
                             <p>{estudiante.tutor_legal}</p>
                         </div>
 
-                        <GrupoModificar estudiante={estudiante}/>
+                        <EstudianteModificar estudiante={estudiante}/>
 
-                        <Modal openElement={<p className="inline border-2 border-black">Eliminar</p>}>
-                            <h1 className="text-2xl text-red-600">¿Está seguro que desea eliminar los siguentes datos?</h1>
-                            <p>ESTUDIANTE: {estudiante.nombre}</p>
-                            <p>FECHA NACIMIENTO: {estudiante.fecha_nacimiento.toLocaleDateString()}</p>
-                            <p>FOTO: <img src={estudiante.foto} className="size-48 object-cover rounded-full" /></p>
-                            <p>TUTOR LEGAL: {estudiante.tutor_legal}</p>
-                            <form action={eliminarEstudiante}>
-                                <input type="hidden" name="id" defaultValue={estudiante.id} />
-                                <button className="border-2 border-black">Eliminar</button>
-                            </form>
-                        </Modal>
+                        <EstudianteEliminar estudiante={estudiante}/>
 
                         <hr />
                     </div>

@@ -1,6 +1,9 @@
 import Modal from "@/components/Modal";
 import { eliminarGrupo, insertarGrupo, modificarGrupo } from "@/lib/actions";
 import { obtenerGrupos } from "@/lib/data";
+import GruposInsertar from "./Insertar";
+import GruposModificar from "./Modificar";
+import GruposEliminar from "./Eliminar";
 
 export default async function Grupos() {
     const grupos = await obtenerGrupos();
@@ -8,14 +11,7 @@ export default async function Grupos() {
     return (
         <div>
 
-            <Modal openElement={<p className="inline border-2 border-black">Insertar grupo</p>}>
-                <form action={insertarGrupo}>
-                    <input name="nombre" placeholder="Nombre" />
-                    <input name="tutor" placeholder="Tutor/a" />
-                    <input name="aula" placeholder="Aula" />
-                    <button className="border-2 border-black">Insertar grupo</button>
-                </form>
-            </Modal>
+            <GruposInsertar/>
 
 
             {
@@ -27,27 +23,9 @@ export default async function Grupos() {
                             <p>{grupo.aula}</p>
                         </div>
 
-                        <Modal openElement={<p className="inline border-2 border-black">Modificar</p>}>
-                            <form action={modificarGrupo}>
-                                <input type="hidden" name="id" defaultValue={grupo.id} />
-                                <input name='nombre' defaultValue={grupo.nombre} />
-                                <input name='tutor' defaultValue={grupo.tutor} />
-                                <input name='aula' defaultValue={grupo.aula} />
+                        <GruposModificar grupo={grupo}/>
 
-                                <button className="border-2 border-black">Modificar</button>
-                            </form>
-                        </Modal>
-
-                        <Modal openElement={<p className="inline border-2 border-black">Eliminar</p>}>
-                            <h1 className="text-2xl text-red-600">¿Desea eliminar los siguentes datos</h1>
-                            <p>GRUPO: {grupo.nombre}</p>
-                            <p>TUTOR/A: {grupo.tutor}</p>
-                            <p>AULA: {grupo.aula}</p>
-                            <form action={eliminarGrupo}>
-                                <input type="hidden" name="id" defaultValue={grupo.id} />
-                                <button className="border-2 border-black">Eliminar</button>
-                            </form>
-                        </Modal>
+                        <GruposEliminar grupo={grupo}/>
 
                         <hr />
                     </div>

@@ -1,6 +1,6 @@
 import { modificarEstudiante } from "@/lib/actions";
 
-function GrupoModificar({estudiante}) {
+function EstudianteModificar({estudiante}) {
     return (
         <Modal openElement={<p className="inline border-2 border-black">Modificar</p>}>
             <form action={modificarEstudiante}>
@@ -16,4 +16,4 @@ function GrupoModificar({estudiante}) {
     );
 }
 
-export default GrupoModificar;
+export default EstudianteModificar;
