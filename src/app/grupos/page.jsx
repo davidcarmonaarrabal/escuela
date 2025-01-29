@@ -1,8 +1,8 @@
 import Modal from "@/components/Modal";
 import { eliminarGrupo, insertarGrupo, modificarGrupo } from "@/lib/actions";
-import { PrismaClient } from "@prisma/client"
 import { Suspense } from "react";
-const prisma = new PrismaClient()
+
+import prisma from "@/lib/prima";
 
 
 async function PaginaGrupos() {
