@@ -1,3 +1,4 @@
+import { obtenerAsignatura } from "@/lib/data";
 import { PrismaClient } from "@prisma/client";
 import { Suspense } from "react";
 const prisma = new PrismaClient()
@@ -25,11 +26,7 @@ export default PaginaAsignatura;
 // ----------------  Componentes de servidor --------------
 
 async function Asignatura({ id }) {
-    const asignatura = await prisma.asignatura.findUnique({
-        where: {
-            id: +id
-        }
-    })
+    const asignatura = await obtenerAsignatura(id);
     //console.log(asignatura);
 
     return (

@@ -1,5 +1,6 @@
 import Modal from "@/components/Modal";
 import { eliminarAsignatura, insertarAsignatura, modificarAsignatura } from "@/lib/actions";
+import { obtenerAsignaturas } from "@/lib/data";
 import { PrismaClient } from "@prisma/client"
 import { Suspense } from "react";
 const prisma = new PrismaClient()
@@ -25,7 +26,7 @@ export default PaginaAsignaturas;
 // ------------------- Componente de servidor 
 
 async function Asignaturas() {
-    const asignaturas = await prisma.asignatura.findMany()
+    const asignaturas = await obtenerAsignaturas();
     //console.log(asignaturas);
     return (
         <div>

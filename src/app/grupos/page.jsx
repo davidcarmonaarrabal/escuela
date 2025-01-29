@@ -2,7 +2,9 @@ import Modal from "@/components/Modal";
 import { eliminarGrupo, insertarGrupo, modificarGrupo } from "@/lib/actions";
 import { Suspense } from "react";
 
-import prisma from "@/lib/prima";
+import prisma from "@/lib/prisma";
+import { obtenerGrupos } from "@/lib/data";
+
 
 
 async function PaginaGrupos() {
@@ -25,8 +27,8 @@ export default PaginaGrupos;
 // ------------------- Componente de servidor 
 
 async function Grupos() {
-    const grupos = await prisma.grupo.findMany()
-    //console.log(grupos);
+    const grupos = await obtenerGrupos();
+    console.log(grupos);
     return (
         <div>
 
